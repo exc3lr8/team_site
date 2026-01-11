@@ -43,3 +43,7 @@ coverage.xml
 # Environment files
 .env
 .venv
+venv/
+
+# Redis local installation
+redis_local/

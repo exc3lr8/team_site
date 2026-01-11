@@ -32,16 +32,19 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    # 'daphne',  # Commented out - using AJAX polling instead of WebSockets
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sessions',
+    # 'channels',  # Commented out - using AJAX polling instead of WebSockets
     'home',
     'team_management',
     'writeups',
     'admin_dashboard',
+    'chat',
     'axes',
     'simple_history',
 ]
@@ -78,6 +81,25 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'excelr8.wsgi.application'
+# ASGI_APPLICATION = 'excelr8.asgi.application'  # Commented out - using AJAX polling instead of WebSockets
+
+# Channels configuration (DISABLED - using AJAX polling for PythonAnywhere free tier compatibility)
+# For production with Redis:
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],
+#         },
+#     },
+# }
+
+# For development without Redis (use in-memory layer):
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer',
+#     },
+# }
 
 AUTHENTICATION_BACKENDS = [
     'axes.backends.AxesStandaloneBackend',  
@@ -129,7 +151,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory where collectstatic will gather files
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # Ensure 'static' is at the same level as your apps

@@ -16,6 +16,25 @@
         </div>
         <!-- Heading -->
 
+        <!-- Quick Actions -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        Quick Actions
+                    </div>
+                    <div class="card-body">
+                        <a href="{% url 'admin_dashboard:chat_rooms' %}" class="btn btn-primary me-2">
+                            <i class="fas fa-comments"></i> Manage Chat Rooms
+                        </a>
+                        <a href="{% url 'admin_dashboard:chat_users' %}" class="btn btn-secondary me-2">
+                            <i class="fas fa-users"></i> View Chat Users
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Projects Table -->
         <div class="card mb-4 wow fadeIn">
             <div class="card-header">Projects</div>
@@ -35,7 +54,7 @@
                             <td>{{ project.description }}</td>
                             <td>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#editProjectModal{{ project.id }}">Edit</button>
-                                <button class="btn btn-danger" onclick="location.href='{% url 'delete_project' project.id %}'">Delete</button>
+                                <button class="btn btn-danger" onclick="location.href='{% url 'admin_dashboard:delete_project' project.id %}'">Delete</button>
                             </td>
                         </tr>
                         {% endfor %}
@@ -63,7 +82,7 @@
                             <td>{% for author in publication.authors.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
                             <td>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#editPublicationModal{{ publication.id }}">Edit</button>
-                                <button class="btn btn-danger" onclick="location.href='{% url 'delete_publication' publication.id %}'">Delete</button>
+                                <button class="btn btn-danger" onclick="location.href='{% url 'admin_dashboard:delete_publication' publication.id %}'">Delete</button>
                             </td>
                         </tr>
                         {% endfor %}
@@ -91,7 +110,7 @@
                             <td>{{ team_member.role }}</td>
                             <td>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#editTeamMemberModal{{ team_member.id }}">Edit</button>
-                                <button class="btn btn-danger" onclick="location.href='{% url 'delete_team_member' team_member.id %}'">Delete</button>
+                                <button class="btn btn-danger" onclick="location.href='{% url 'admin_dashboard:delete_team_member' team_member.id %}'">Delete</button>
                             </td>
                         </tr>
                         {% endfor %}
